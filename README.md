@@ -1,6 +1,6 @@
 Compilers NTUA Cource.
 
-[Course website] http://courses.softlab.ntua.gr/compilers/
+[Course website] (http://courses.softlab.ntua.gr/compilers/)
 
 ## LICENSE
 
