@@ -6,7 +6,7 @@ W [ \n\r\t]
 /* keywords */
 "and"               { return t_And; }
 "array"             { return t_Array; }
-"begin"             { return t_Begin; }
+"begin"|"("         { return t_Begin; }
 "bool"              { return t_Bool; }
 "char"              { return t_Char; }
 "delete"            { return t_Delete; }
@@ -15,7 +15,7 @@ W [ \n\r\t]
 "done"              { return t_Done; }
 "downto"            { return t_Downto; }
 "else"              { return t_Else; }
-"end"               { return t_End; }
+"end"|")"           { return t_End; }
 "false"             { return t_False; }
 "float"             { return t_Float; }
 "for"               { return t_For; }
@@ -25,7 +25,7 @@ W [ \n\r\t]
 "let"               { return t_Let; }
 "match"             { return t_Match; }
 "mod"               { return t_Mod; }
-"mutable"           { return t_Mutable
+"mutable"           { return t_Mutable; }
 "new"               { return t_New; }
 "not"               { return t_Not; }
 "of"                { return t_Of; }
@@ -40,7 +40,7 @@ W [ \n\r\t]
 "with"              { return t_With; }  
 
 /* operators */
-[=\+\-\*\/\|\;!<>\[\](),:]  { return yytext[0];}
+[=\+\-\*\/\|\;!<>\[\],:]  { return yytext[0];}
 "−>"                { return t_Func; }
 "+."                { return t_RealPlus; }
 "−."                { return t_RealMinus; }
