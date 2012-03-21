@@ -1,4 +1,5 @@
 %{}
+unsigned int c_opened=0;
 int lines=0;
 enum { t_And=64,
 t_Array, 
@@ -47,7 +48,9 @@ t_LEQ,
 t_GEQ,
 t_EQ,
 t_NOT,
-t_ASSIGN };
+t_ASSIGN,
+t_Const_str,
+t_Identifier };
 %}
 
 
@@ -95,7 +98,7 @@ CL ^--[^\n]*
 "while"                     { return t_While; }
 "with"                      { return t_With; }  
 
-[=\+\-\*\/\|\;!<>\[\],:]    { return yytext[0];}
+[=\+\-\*\/\|\;!<>\[\]\\,:]    { return yytext[0];}
 "−>"                        { return t_Func; }
 "+."                        { return t_RealPlus; }
 "−."                        { return t_RealMinus; }
@@ -115,9 +118,12 @@ CL ^--[^\n]*
 {W}*                        { /* nothing */ }
 {CL}                        { /* nothing */ }	
 <COMMENT>[^"*)"]*           { /* nothing */ }
-<COMMENT>"(*"               {  BEGIN(COMMENT); }
-<COMMENT>"*)"               {  BEGIN(INITIAL); }
+<COMMENT>"(*"               {  if( c_opened == 1) BEGIN(COMMENT); ++c_opened;}
+<COMMENT>"*)"               {  if( c_opened == 1) BEGIN(INITIAL); }
 <<EOF>>                     { return 0; }
+\".*\"                        { return t_Const_str; }
+{L}*_?{L}*                      { return t_Identifier; }
+{D}                         { return t_Int; }
 .                           { return -1; }
 
 

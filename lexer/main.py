@@ -2,7 +2,7 @@
 # -*- coding: utf-8
 #/* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 #
-#* File Name : lexer.py
+#* File Name : main.py
 #
 #* Purpose :
 #
@@ -14,15 +14,15 @@
 #
 #_._._._._._._._._._._._._._._._._._._._._.*/
 
-from ctypes import *
-import os
-path = os.path.dirname(os.path.realpath(__file__))
-lib=CDLL("%s/liblex.yy.so"%path)
+import lexer
+import sys
 
-def yylex():
-    return lib.yylex()
-def yytext():
-    return c_char_p.in_dll(lib,"yytext")
-def yyline():
-    return c_int.in_dll(lib,"line")
+def main():
+    i = lexer.yylex()
+    while i:
+        print i, lexer.yytext().value
+        i = lexer.yylex()
+
+if __name__=="__main__":
+    main()
 
