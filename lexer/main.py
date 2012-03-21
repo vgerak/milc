@@ -14,14 +14,18 @@
 #
 #_._._._._._._._._._._._._._._._._._._._._.*/
 
-import lexer
 import sys
+from lexer import types, yylex,yytext,yyline
 
 def main():
-    i = lexer.yylex()
+    i = yylex()
     while i:
-        print i, lexer.yytext().value
-        i = lexer.yylex()
+        try:
+            print types[i], "\t\t\t",yytext()
+        except KeyError:
+            print i, "\t\t\t", yytext()
+
+        i = yylex()
 
 if __name__=="__main__":
     main()

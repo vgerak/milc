@@ -1,7 +1,7 @@
 %{}
 unsigned int c_opened=0;
-int lines=0;
-enum { t_And=64,
+int lines=1;
+enum { t_And=128,
 t_Array, 
 t_Begin, 
 t_Bool, 
@@ -60,7 +60,7 @@ D [0-9]
 L [A-Za-z]
 W [ \t]
 NL [\n\r]
-CL ^--[^\n]*
+CL --
 %%
 
 "and"                       { return t_And; }
@@ -116,10 +116,10 @@ CL ^--[^\n]*
 
 <*>{NL}                        { ++lines; }	
 {W}*                        { /* nothing */ }
-{CL}                        { /* nothing */ }	
-<COMMENT>[^"*)"]*           { /* nothing */ }
-<COMMENT>"(*"               {  if( c_opened == 1) BEGIN(COMMENT); ++c_opened;}
-<COMMENT>"*)"               {  if( c_opened == 1) BEGIN(INITIAL); }
+{W}*--.*                        { ++lines; }	
+<COMMENT>[^"(*""*)"{NL}]           { /* nothing */ }
+<*>"(*"               {  if( c_opened == 0) BEGIN(COMMENT); ++c_opened;}
+<COMMENT>"*)"               {  if( c_opened == 1) BEGIN(INITIAL); --c_opened; }
 <<EOF>>                     { return 0; }
 \".*\"                        { return t_Const_str; }
 {L}*_?{L}*                      { return t_Identifier; }
