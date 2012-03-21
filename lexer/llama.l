@@ -1,11 +1,12 @@
 %{}
-unsigned int c_opened=0;
-int lines=1;
-enum { t_And=128,
-t_Array, 
-t_Begin, 
-t_Bool, 
-t_Char, 
+unsigned int c_opened = 0;
+int lines = 1;
+enum {
+t_And = 128,
+t_Array,
+t_Begin,
+t_Bool,
+t_Char,
 t_Delete,
 t_Dim,
 t_Do,
@@ -13,14 +14,14 @@ t_Done,
 t_Downto,
 t_Else,
 t_End,
-t_False, 
-t_Float, 
+t_False,
+t_Float,
 t_For,
 t_If,
 t_In,
 t_Int,
 t_Let,
-t_Match, 
+t_Match,
 t_Mod,
 t_Mutable,
 t_New,
@@ -43,7 +44,7 @@ t_RealDiv,
 t_Pow,
 t_AND,
 t_OR,
-t_DomEQ, 
+t_DomEQ,
 t_LEQ,
 t_GEQ,
 t_EQ,
@@ -96,9 +97,9 @@ CL --
 "type"                      { return t_Type; }
 "unit"                      { return t_Unit; }
 "while"                     { return t_While; }
-"with"                      { return t_With; }  
+"with"                      { return t_With; }
 
-[=\+\-\*\/\|\;!<>\[\]\\,:]    { return yytext[0];}
+[=\+\-\*\/\|\;!<>\[\]\\,:]  { return yytext[0];}
 "−>"                        { return t_Func; }
 "+."                        { return t_RealPlus; }
 "−."                        { return t_RealMinus; }
@@ -114,19 +115,16 @@ CL --
 "!="                        { return t_NOT; }
 ":="                        { return t_ASSIGN; }
 
-<*>{NL}                        { ++lines; }	
+<*>{NL}                     { ++lines; }
 {W}*                        { /* nothing */ }
-{W}*--.*                        { ++lines; }	
-<COMMENT>[^"(*""*)"{NL}]           { /* nothing */ }
-<*>"(*"               {  if( c_opened == 0) BEGIN(COMMENT); ++c_opened;}
-<COMMENT>"*)"               {  if( c_opened == 1) BEGIN(INITIAL); --c_opened; }
+{W}*--.*                    { ++lines; }
+<COMMENT>[^"(*""*)"{NL}]    { /* nothing */ }
+<*>"(*"                     {  if( c_opened++ == 0) BEGIN(COMMENT);}
+<COMMENT>"*)"               {  if( --c_opened == 0) BEGIN(INITIAL);}
 <<EOF>>                     { return 0; }
-\".*\"                        { return t_Const_str; }
-{L}*_?{L}*                      { return t_Identifier; }
+\".*\"                      { return t_Const_str; }
+{L}*_?{L}*                  { return t_Identifier; }
 {D}                         { return t_Int; }
 .                           { return -1; }
 
-
-
 %%
-
