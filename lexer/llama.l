@@ -66,7 +66,7 @@ CL --
 
 "and"                       { return t_And; }
 "array"                     { return t_Array; }
-"begin"|"("                 { return t_Begin; }
+"begin"                     { return t_Begin; }
 "bool"                      { return t_Bool; }
 "char"                      { return t_Char; }
 "delete"                    { return t_Delete; }
@@ -75,7 +75,7 @@ CL --
 "done"                      { return t_Done; }
 "downto"                    { return t_Downto; }
 "else"                      { return t_Else; }
-"end"|")"                   { return t_End; }
+"end"                       { return t_End; }
 "false"                     { return t_False; }
 "float"                     { return t_Float; }
 "for"                       { return t_For; }
@@ -99,7 +99,7 @@ CL --
 "while"                     { return t_While; }
 "with"                      { return t_With; }
 
-[=\+\-\*\/\|\;!<>\[\]\\,:]  { return yytext[0];}
+[=\+\-\*\/\|\;!<>\[\]\\,:()]  { return yytext[0];}
 "−>"                        { return t_Func; }
 "+."                        { return t_RealPlus; }
 "−."                        { return t_RealMinus; }
