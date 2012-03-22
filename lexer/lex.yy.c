@@ -588,13 +588,14 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "llama.l"
 #line 2 "llama.l"
-unsigned int c_opened=0;
-int lines=1;
-enum { t_And=128,
-t_Array, 
-t_Begin, 
-t_Bool, 
-t_Char, 
+unsigned int c_opened = 0;
+int lines = 1;
+enum {
+t_And = 128,
+t_Array,
+t_Begin,
+t_Bool,
+t_Char,
 t_Delete,
 t_Dim,
 t_Do,
@@ -602,14 +603,14 @@ t_Done,
 t_Downto,
 t_Else,
 t_End,
-t_False, 
-t_Float, 
+t_False,
+t_Float,
 t_For,
 t_If,
 t_In,
 t_Int,
 t_Let,
-t_Match, 
+t_Match,
 t_Mod,
 t_Mutable,
 t_New,
@@ -632,7 +633,7 @@ t_RealDiv,
 t_Pow,
 t_AND,
 t_OR,
-t_DomEQ, 
+t_DomEQ,
 t_LEQ,
 t_GEQ,
 t_EQ,
@@ -641,7 +642,7 @@ t_ASSIGN,
 t_Const_str,
 t_Identifier };
 
-#line 645 "lex.yy.c"
+#line 646 "lex.yy.c"
 
 #define INITIAL 0
 #define COMMENT 1
@@ -829,10 +830,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 64 "llama.l"
+#line 65 "llama.l"
 
 
-#line 836 "lex.yy.c"
+#line 837 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -917,312 +918,312 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 66 "llama.l"
+#line 67 "llama.l"
 { return t_And; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 67 "llama.l"
+#line 68 "llama.l"
 { return t_Array; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 68 "llama.l"
+#line 69 "llama.l"
 { return t_Begin; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 69 "llama.l"
+#line 70 "llama.l"
 { return t_Bool; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 70 "llama.l"
+#line 71 "llama.l"
 { return t_Char; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 71 "llama.l"
+#line 72 "llama.l"
 { return t_Delete; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 72 "llama.l"
+#line 73 "llama.l"
 { return t_Dim; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 73 "llama.l"
+#line 74 "llama.l"
 { return t_Do; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 74 "llama.l"
+#line 75 "llama.l"
 { return t_Done; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 75 "llama.l"
+#line 76 "llama.l"
 { return t_Downto; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 76 "llama.l"
+#line 77 "llama.l"
 { return t_Else; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 77 "llama.l"
+#line 78 "llama.l"
 { return t_End; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 78 "llama.l"
+#line 79 "llama.l"
 { return t_False; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 79 "llama.l"
+#line 80 "llama.l"
 { return t_Float; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 80 "llama.l"
+#line 81 "llama.l"
 { return t_For; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 81 "llama.l"
+#line 82 "llama.l"
 { return t_If; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 82 "llama.l"
+#line 83 "llama.l"
 { return t_In; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 83 "llama.l"
+#line 84 "llama.l"
 { return t_Int; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 84 "llama.l"
+#line 85 "llama.l"
 { return t_Let; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 85 "llama.l"
+#line 86 "llama.l"
 { return t_Match; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 86 "llama.l"
+#line 87 "llama.l"
 { return t_Mod; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 87 "llama.l"
+#line 88 "llama.l"
 { return t_Mutable; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 88 "llama.l"
+#line 89 "llama.l"
 { return t_New; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 89 "llama.l"
+#line 90 "llama.l"
 { return t_Not; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 90 "llama.l"
+#line 91 "llama.l"
 { return t_Of; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 91 "llama.l"
+#line 92 "llama.l"
 { return t_Rec; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 92 "llama.l"
+#line 93 "llama.l"
 { return t_Ref; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 93 "llama.l"
+#line 94 "llama.l"
 { return t_Then; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 94 "llama.l"
+#line 95 "llama.l"
 { return t_To; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 95 "llama.l"
+#line 96 "llama.l"
 { return t_True; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 96 "llama.l"
+#line 97 "llama.l"
 { return t_Type; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 97 "llama.l"
+#line 98 "llama.l"
 { return t_Unit; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 98 "llama.l"
+#line 99 "llama.l"
 { return t_While; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 99 "llama.l"
-{ return t_With; }  
+#line 100 "llama.l"
+{ return t_With; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 101 "llama.l"
+#line 102 "llama.l"
 { return yytext[0];}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 102 "llama.l"
+#line 103 "llama.l"
 { return t_Func; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 103 "llama.l"
+#line 104 "llama.l"
 { return t_RealPlus; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 104 "llama.l"
+#line 105 "llama.l"
 { return t_RealMinus; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 105 "llama.l"
+#line 106 "llama.l"
 { return t_RealMul; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 106 "llama.l"
+#line 107 "llama.l"
 { return t_RealDiv; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 107 "llama.l"
+#line 108 "llama.l"
 { return t_Pow; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 108 "llama.l"
+#line 109 "llama.l"
 { return t_AND; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 109 "llama.l"
+#line 110 "llama.l"
 { return t_OR; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 110 "llama.l"
+#line 111 "llama.l"
 { return t_DomEQ; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 111 "llama.l"
+#line 112 "llama.l"
 { return t_LEQ; }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 112 "llama.l"
+#line 113 "llama.l"
 { return t_GEQ; }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 113 "llama.l"
+#line 114 "llama.l"
 { return t_EQ; }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 114 "llama.l"
+#line 115 "llama.l"
 { return t_NOT; }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 115 "llama.l"
+#line 116 "llama.l"
 { return t_ASSIGN; }
 	YY_BREAK
 case 50:
 /* rule 50 can match eol */
 YY_RULE_SETUP
-#line 117 "llama.l"
-{ ++lines; }	
+#line 118 "llama.l"
+{ ++lines; }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 118 "llama.l"
+#line 119 "llama.l"
 { /* nothing */ }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 119 "llama.l"
-{ ++lines; }	
+#line 120 "llama.l"
+{ ++lines; }
 	YY_BREAK
 case 53:
 /* rule 53 can match eol */
 YY_RULE_SETUP
-#line 120 "llama.l"
+#line 121 "llama.l"
 { /* nothing */ }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 121 "llama.l"
-{  if( c_opened == 0) BEGIN(COMMENT); ++c_opened;}
+#line 122 "llama.l"
+{  if( c_opened++ == 0) BEGIN(COMMENT);}
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 122 "llama.l"
-{  if( c_opened == 1) BEGIN(INITIAL); --c_opened; }
+#line 123 "llama.l"
+{  if( --c_opened == 0) BEGIN(INITIAL);}
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMMENT):
-#line 123 "llama.l"
+#line 124 "llama.l"
 { return 0; }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 124 "llama.l"
+#line 125 "llama.l"
 { return t_Const_str; }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 125 "llama.l"
+#line 126 "llama.l"
 { return t_Identifier; }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 126 "llama.l"
+#line 127 "llama.l"
 { return t_Int; }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 127 "llama.l"
+#line 128 "llama.l"
 { return -1; }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 131 "llama.l"
+#line 130 "llama.l"
 ECHO;
 	YY_BREAK
-#line 1226 "lex.yy.c"
+#line 1227 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2218,8 +2219,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 131 "llama.l"
-
+#line 130 "llama.l"
 
 
 
