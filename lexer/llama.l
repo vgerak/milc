@@ -69,7 +69,7 @@ BL [A-Z]
 SL [a-z]
 W [ \t]
 NL [\n\r]
-CL --
+CL --.*
 %%
 
 "and"                           { return t_And; }
@@ -125,19 +125,23 @@ CL --
 
 <*>{NL}                         { ++lines; }
 {W}*                            { /* nothing */ }
-{W}*--.*                        { ++lines; }
-<COMMENT>[^"(*""*)"{NL}]        { /* nothing */ }
+{CL}                            { /* nothing */ }
 <*>"(*"                         { if( c_opened++ == 0) BEGIN(COMMENT); }
+<COMMENT>[^"(*""*)"]            { /* nothing */ }
 <COMMENT>"*)"                   { if( --c_opened == 0) BEGIN(INITIAL); }
 <<EOF>>                         { return 0; }
-\".*[^\\]\"                          { return t_Const_str; }
 {SL}{DLU}*                      { return t_Identifier; }
 {BL}{DLU}*                      { return t_Constructor; }
+
+\'.\'                           { return t_Const_char; }
+\'\\[nrt0\\\'\"]\'              { return t_Const_char; }
+\'\\x{H}{H}\'                   { return t_Const_char; }
+
+\".*\"                          { return t_Const_str; }
+
 [+-]?{D}*                       { return t_Const_int; }
 [+-]?{D}+\.{D}+([Ee][+-]?{D}+)? { return t_Const_float; }
-\'.\'                           { return t_Const_char; }
-\'\\.\'                         { return t_Const_char; }
-\'\\x{H}{H}\'                   { return t_Const_char; }
+
 .                               { return -1; }
 
 %%

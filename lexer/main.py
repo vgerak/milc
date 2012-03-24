@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : main.py
 # Creation Date : 21-03-2012
-# Last Modified : Sat 24 Mar 2012 01:45:47 PM EET
+# Last Modified : Sat 24 Mar 2012 02:21:22 PM EET
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -16,9 +16,9 @@ def main():
     i = yylex()
     while i:
         try:
-            print types[i], "\t\t\t",yytext()
+            print "line: %d\t\t\t%s\t\t\t%s"%(yyline(),types[i],yytext())
         except KeyError:
-            print i, "\t\t\t", yytext()
+            print "line: %d\t\t\t%s\t\t\t%s"%(yyline(),i,yytext())
 
         i = yylex()
 
