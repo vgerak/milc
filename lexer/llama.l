@@ -132,7 +132,7 @@ CL --
 \".*\"                          { return t_Const_str; }
 {SL}{DLU}*                  { return t_Identifier; }
 {BL}{DLU}*                  { return t_Constructor; }
-{D}*                            { return t_Const_int; }
+[+-]?{D}*                            { return t_Const_int; }
 \'\\?.*\'                          { return t_Const_char; }
 .                               { return -1; }
 
