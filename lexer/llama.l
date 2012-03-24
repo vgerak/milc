@@ -130,10 +130,11 @@ CL --
 <COMMENT>"*)"                   { if( --c_opened == 0) BEGIN(INITIAL); }
 <<EOF>>                         { return 0; }
 \".*\"                          { return t_Const_str; }
-{SL}{DLU}*                  { return t_Identifier; }
-{BL}{DLU}*                  { return t_Constructor; }
-[+-]?{D}*                            { return t_Const_int; }
-\'\\?.*\'                          { return t_Const_char; }
+{SL}{DLU}*                      { return t_Identifier; }
+{BL}{DLU}*                      { return t_Constructor; }
+[+-]?{D}*                       { return t_Const_int; }
+[+-]?{D}+\.{D}+([Ee][+-]?{D}+)? { return t_Const_float; }
+\'\\?.*\'                       { return t_Const_char; }
 .                               { return -1; }
 
 %%
