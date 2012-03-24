@@ -5,8 +5,6 @@ let main =
 			r[i] := !s[l-i-1]
 		done;
 		r[l] := '\0' in
-		r[l] := '\00' in
-		r[l] := '00' in
 
 	let mutable p [20] n
 
