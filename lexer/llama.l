@@ -125,8 +125,8 @@ CL --
 {W}*                            { /* nothing */ }
 {W}*--.*                        { ++lines; }
 <COMMENT>[^"(*""*)"{NL}]        { /* nothing */ }
-<*>"(*"                         {  if( c_opened++ == 0) BEGIN(COMMENT); }
-<COMMENT>"*)"                   {  if( --c_opened == 0) BEGIN(INITIAL); }
+<*>"(*"                         { if( c_opened++ == 0) BEGIN(COMMENT); }
+<COMMENT>"*)"                   { if( --c_opened == 0) BEGIN(INITIAL); }
 <<EOF>>                         { return 0; }
 \".*\"                          { return t_Const_str; }
 {SL}[{L}_{D}]*                  { return t_Identifier; }
