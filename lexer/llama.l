@@ -64,7 +64,7 @@ t_Identifier };
 D [0-9]
 L [A-Za-z]
 BL [A-Z]
-SL [A-Z]
+SL [a-z]
 W [ \t]
 NL [\n\r]
 CL --
