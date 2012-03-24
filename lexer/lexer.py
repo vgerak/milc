@@ -1,17 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8
-#/* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 #
-#* File Name : lexer.py
-#
-#* Purpose :
-#
-#* Creation Date : 21-03-2012
-#
-#* Last Modified : Sat 20 Dec 2008 09:37:30 AM PST
-#
-#* Created By : Greg Liras <gregliras@gmail.com>
-#
+#* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+# File Name : lexer.py
+# Creation Date : 21-03-2012
+# Last Modified : Sat 24 Mar 2012 01:45:51 PM EET
+# Created By : Greg Liras <gregliras@gmail.com>
+# Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
 
 from ctypes import *
