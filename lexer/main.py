@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : main.py
 # Creation Date : 21-03-2012
-# Last Modified : Sat 24 Mar 2012 02:21:22 PM EET
+# Last Modified : Sat 24 Mar 2012 08:03:26 PM EET
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -21,6 +21,7 @@ def main():
             print "line: %d\t\t\t%s\t\t\t%s"%(yyline(),i,yytext())
 
         i = yylex()
+    return 0
 
 if __name__=="__main__":
     main()

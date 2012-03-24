@@ -32,15 +32,22 @@ test "Nam e:\t\"douglasadams\"\nvalue:\t42\n"test
 Test
 --comment
 Test2
+--
+
 (* miltiline
 comm
 ment
 leme
 edw
 (* "kai extra level (tes13274821581#@!%%#%&^^&& ads235876
-kai ama laxei
--- petame kai inline
 *)
+(* "kai extra level (tes13274821581#@!%%#%&^^&& ads235876
+(* "kai extra level (tes13274821581#@!%%#%&^^&& ads235876
+kai ama laxei
+*)
+*)
+*)
+-- petame kai inline
 
 0.0
 0.1

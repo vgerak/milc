@@ -55,6 +55,7 @@ t_Const_str,
 t_Const_int,
 t_Const_float,
 t_Const_char,
+t_Comment,
 t_Identifier };
 %}
 
@@ -70,7 +71,7 @@ SL [a-z]
 W [ \t]
 NL [\n\r]
 CL --.*
-CC (\(\*\)|(\*\))
+CC "(*""*)"
 %%
 
 "and"                           { return t_And; }
@@ -127,10 +128,9 @@ CC (\(\*\)|(\*\))
 <*>{NL}                         { ++lines; }
 {W}*                            { /* nothing */ }
 {CL}                            { /* nothing */ }
-<*>"(*"                         { if( c_opened++ == 0) BEGIN(COMMENT); }
-<COMMENT>[^{CC}]            { /* nothing */ }
-<COMMENT>"*)"                   { if( --c_opened == 0) BEGIN(INITIAL); }
-<<EOF>>                         { return 0; }
+<*>"(*"                         { if( c_opened++ == 0 ) BEGIN(COMMENT); }
+<COMMENT>!("(*"|"*)")           { /* nothing */ }
+<COMMENT>"*)"                   { if( --c_opened == 0 ) BEGIN(INITIAL);  }
 {SL}{DLU}*                      { return t_Identifier; }
 {BL}{DLU}*                      { return t_Constructor; }
 
@@ -143,6 +143,7 @@ CC (\(\*\)|(\*\))
 [+-]?{D}*                       { return t_Const_int; }
 [+-]?{D}+\.{D}+([Ee][+-]?{D}+)? { return t_Const_float; }
 
+<COMMENT><<EOF>>                { BEGIN(INITIAL); return -2; }
 .                               { return -1; }
 
 %%
