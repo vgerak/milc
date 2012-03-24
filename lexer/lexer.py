@@ -29,6 +29,8 @@ typelist=[ 't_And', 't_Array', 't_Begin', 't_Bool', 't_Char',
 't_Const_str', 't_Identifier' ]
 for value,name in enumerate (typelist):
     types[value+128]=name;
+
+types[-1]='t_ERROR'
     
 
 

@@ -1,4 +1,5 @@
 TARGET=llama
+TESTDIR=../samples/
 
 liblex.yy.so:	$(TARGET).l
 	flex $(TARGET).l
@@ -6,3 +7,5 @@ liblex.yy.so:	$(TARGET).l
 	ld -G lex.yy.o -lfl -o liblex.yy.so
 clean:
 	rm -f *.o *.so
+tests:
+	./test.sh $(TESTDIR)
