@@ -50,7 +50,11 @@ t_GEQ,
 t_EQ,
 t_NOT,
 t_ASSIGN,
+t_Constructor,
 t_Const_str,
+t_Const_int,
+t_Const_float,
+t_Const_char,
 t_Identifier };
 %}
 
@@ -59,7 +63,7 @@ t_Identifier };
 
 D [0-9]
 L [A-Za-z]
-CL [A-Z]
+BL [A-Z]
 SL [A-Z]
 W [ \t]
 NL [\n\r]
@@ -125,8 +129,10 @@ CL --
 <COMMENT>"*)"                   {  if( --c_opened == 0) BEGIN(INITIAL);}
 <<EOF>>                         { return 0; }
 \".*\"                          { return t_Const_str; }
-[{L}_{D}]*                      { return t_Identifier; }
-{D}                             { return t_Int; }
+{SL}[{L}_{D}]*                  { return t_Identifier; }
+{BL}[{L}_{D}]*                  { return t_Constructor; }
+{D}*                            { return t_Const_int; }
+{D}*                            { return t_Const_int; }
 .                               { return -1; }
 
 %%
