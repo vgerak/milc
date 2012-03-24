@@ -5,9 +5,14 @@ let main =
 			r[i] := !s[l-i-1]
 		done;
 		r[l] := '\0' in
+		r[l] := '\00' in
+		r[l] := '00' in
 
 	let mutable p [20] n
 
 	reverse "\n!dlrow olleH" p;
 	print_string p
+    asdf___asjkfdha_str_11_2_s_
+    asdf___asjkfdha_str_11_2_s_
+    Asdf___asjkfdha_str_11_2_s_
 

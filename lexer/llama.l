@@ -63,6 +63,7 @@ t_Identifier };
 
 D [0-9]
 L [A-Za-z]
+DLU [a-zA-Z0-9_]
 BL [A-Z]
 SL [a-z]
 W [ \t]
@@ -129,10 +130,10 @@ CL --
 <COMMENT>"*)"                   { if( --c_opened == 0) BEGIN(INITIAL); }
 <<EOF>>                         { return 0; }
 \".*\"                          { return t_Const_str; }
-{SL}[{L}_{D}]*                  { return t_Identifier; }
-{BL}[{L}_{D}]*                  { return t_Constructor; }
+{SL}{DLU}*                  { return t_Identifier; }
+{BL}{DLU}*                  { return t_Constructor; }
 {D}*                            { return t_Const_int; }
-\'.*\'                          { return t_Const_char; }
+\'\\?.*\'                          { return t_Const_char; }
 .                               { return -1; }
 
 %%

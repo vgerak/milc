@@ -26,7 +26,7 @@ typelist=[ 't_And', 't_Array', 't_Begin', 't_Bool', 't_Char',
 't_Then', 't_To', 't_True', 't_Type', 't_Unit', 't_While', 't_With', 't_Func', 't_RealPlus',
 't_RealMinus', 't_RealMul', 't_RealDiv', 't_Pow', 't_AND', 't_OR',
 't_DomEQ', 't_LEQ', 't_GEQ', 't_EQ', 't_NOT', 't_ASSIGN',
-'t_Const_str', 't_Identifier' ]
+'t_Constructor','t_Const_str','t_Const_int','t_Const_float','t_Const_char', 't_Identifier' ]
 for value,name in enumerate (typelist):
     types[value+128]=name;
 
