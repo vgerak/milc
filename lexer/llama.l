@@ -70,6 +70,7 @@ SL [a-z]
 W [ \t]
 NL [\n\r]
 CL --.*
+CC (\(\*\)|(\*\))
 %%
 
 "and"                           { return t_And; }
@@ -127,7 +128,7 @@ CL --.*
 {W}*                            { /* nothing */ }
 {CL}                            { /* nothing */ }
 <*>"(*"                         { if( c_opened++ == 0) BEGIN(COMMENT); }
-<COMMENT>[^"(*""*)"]            { /* nothing */ }
+<COMMENT>[^{CC}]            { /* nothing */ }
 <COMMENT>"*)"                   { if( --c_opened == 0) BEGIN(INITIAL); }
 <<EOF>>                         { return 0; }
 {SL}{DLU}*                      { return t_Identifier; }
