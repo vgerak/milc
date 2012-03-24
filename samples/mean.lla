@@ -21,10 +21,3 @@ let main =
 		print_float (!sum /. float_of_int k);
 		print_string "\n"
 	end
-
-42.0
-4.2e1
-0.420e+2
-42000.0e-3
-24.0e3e4
-
