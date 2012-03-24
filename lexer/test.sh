@@ -2,6 +2,6 @@
 for i in `ls $1`
 do
     echo $i
-    ./main.py < $1/$i | grep ERROR
+    ./main.py $1/$i
     read
 done
