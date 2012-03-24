@@ -34,4 +34,5 @@ let main =
 	print_array "Initial array: " x;
 	bsort x;
 	print_array "Sprted array: " x
+	print_array "Sprted array: \" "
 
