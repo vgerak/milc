@@ -59,6 +59,8 @@ t_Identifier };
 
 D [0-9]
 L [A-Za-z]
+CL [A-Z]
+SL [A-Z]
 W [ \t]
 NL [\n\r]
 CL --
@@ -123,7 +125,7 @@ CL --
 <COMMENT>"*)"                   {  if( --c_opened == 0) BEGIN(INITIAL);}
 <<EOF>>                         { return 0; }
 \".*\"                          { return t_Const_str; }
-{L}*_?{L}*                      { return t_Identifier; }
+[{L}_{D}]*                      { return t_Identifier; }
 {D}                             { return t_Int; }
 .                               { return -1; }
 
