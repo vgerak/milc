@@ -4963,3 +4963,12 @@ void yyfree (void * ptr )
 
 
 
+void openIO(const char *fname)
+{
+    yyin = fopen( fname,"r" );
+}
+void closeIO()
+{
+    fclose(yyin);
+}
+

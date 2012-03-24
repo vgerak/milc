@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Sat 24 Mar 2012 05:57:04 PM EET
+# Last Modified : Sat 24 Mar 2012 08:47:05 PM EET
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -35,4 +35,8 @@ def yytext():
     return c_char_p.in_dll(lib,"yytext").value
 def yyline():
     return c_int.in_dll(lib,"lines").value
+def yyopenIO(fname):
+    lib.openIO(c_char_p(fname))
+def yycloseIO():
+    lib.closeIO()
 

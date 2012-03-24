@@ -147,3 +147,12 @@ CC "(*""*)"
 .                               { return -1; }
 
 %%
+
+void openIO(const char *fname)
+{
+    yyin = fopen( fname,"r" );
+}
+void closeIO()
+{
+    fclose(yyin);
+}
