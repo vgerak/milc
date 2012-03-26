@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Tue 27 Mar 2012 01:48:22 EEST
+# Last Modified : Tue 27 Mar 2012 01:52:49 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -111,19 +111,30 @@ def t_error(t):
 
 # Build the lexer
 import ply.lex as lex
+from sys import argv
 lex.lex()
-while 1:
-    try:
-        sometext = raw_input()
-        lex.input(sometext)
-        while 1:
-            tok = lex.token()
-            if not tok:
-                break
-            print tok
-    except EOFError:
-        print "EOF"
-        break
+f = open(argv[1], "r")
+for line in f.readlines():
+    lex.input(line)
+    while 1:
+        tok = lex.token()
+        if not tok: break
+        print tok
+
+
+#Used raw_input for debugging
+#while 1:
+#    try:
+#        sometext = raw_input()
+#        lex.input(sometext)
+#        while 1:
+#            tok = lex.token()
+#            if not tok:
+#                break
+#            print tok
+#    except EOFError:
+#        print "EOF"
+#        break
 
 ### Stuff for Parser later on ###
 
