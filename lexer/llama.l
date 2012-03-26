@@ -129,8 +129,11 @@ CC "(*""*)"
 {W}*                            { /* nothing */ }
 {CL}                            { /* nothing */ }
 <*>"(*"                         { if( c_opened++ == 0 ) BEGIN(COMMENT); }
-<COMMENT>!("(*"|"*)")           { /* nothing */ }
+<COMMENT>"("                    { /* nothing */ }
+<COMMENT>")"                    { /* nothing */ }
+<COMMENT>[^*()\n]*                { /* nothing */ }
 <COMMENT>"*)"                   { if( --c_opened == 0 ) BEGIN(INITIAL);  }
+<COMMENT><<EOF>>                { BEGIN(INITIAL); return -2; }
 {SL}{DLU}*                      { return t_Identifier; }
 {BL}{DLU}*                      { return t_Constructor; }
 
@@ -143,8 +146,8 @@ CC "(*""*)"
 [+-]?{D}*                       { return t_Const_int; }
 [+-]?{D}+\.{D}+([Ee][+-]?{D}+)? { return t_Const_float; }
 
-<COMMENT><<EOF>>                { BEGIN(INITIAL); return -2; }
-.                               { return -1; }
+<<EOF>>                         { return 0; }
+.                               { printf("Error on line %d",lines); return -1; }
 
 %%
 
