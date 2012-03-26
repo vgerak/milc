@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Tue 27 Mar 2012 01:52:49 EEST
+# Last Modified : Tue 27 Mar 2012 02:06:32 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -42,8 +42,10 @@ reserved = {
 'type'      : 'Type',
 'unit'      : 'Unit',
 'while'     : 'While',
-'with'      : 'With',
+'with'      : 'With'
 }
+
+literals = [ '+', '-', '*', '/', '=', '(', ')', '|', ';', '!', '<', '>', '[', ']', '\\', ',', ':' ]
 
 tokens = [ 'Func', 'Plus', 'Minus', 'Mul', 'Div', 'Equals', 'LPAREN', 'RPAREN',
 'VBar', 'Semicolon', 'Bang', 'Less', 'Greater', 'LSQPAREN',
@@ -51,28 +53,28 @@ tokens = [ 'Func', 'Plus', 'Minus', 'Mul', 'Div', 'Equals', 'LPAREN', 'RPAREN',
 
 'RealPlus', 'RealMinus', 'RealMul', 'RealDiv', 'Pow', 'AND', 'OR',
 'DomEQ', 'LEQ', 'GEQ', 'EQ', 'NOT', 'ASSIGN',
-'Constructor','Const_str','Const_int','Const_float','Const_char', 'Comment', 'Identifier' ] + list(reserved.values())
+'Constructor','Const_str','Const_int','Const_float','Const_char', 'Comment', 'Identifier' , 'literals' ] + list(reserved.values())
 
 # Tokens
 
-t_Func           =  r'\−>'
-t_Plus           =  r'\+'
-t_Minus          =  r'-'
-t_Mul            =  r'\*'
-t_Div            =  r'/'
-t_Equals         =  r'='
-t_LPAREN         =  r'\('
-t_RPAREN         =  r'\)'
-t_VBar           =  r'\|'
-t_Semicolon      =  r';'
-t_Bang           =  r'!'
-t_Less           =  r'<'
-t_Greater        =  r'>'
-t_LSQPAREN       =  r'\['
-t_RSQPAREN       =  r'\]'
-t_BSlash         =  r'\\'
-t_Comma          =  r','
-t_Colon          =  r':'
+#t_Plus           =  r'\+'
+#t_Minus          =  r'-'
+#t_Mul            =  r'\*'
+#t_Div            =  r'/'
+#t_Equals         =  r'='
+#t_LPAREN         =  r'\('
+#t_RPAREN         =  r'\)'
+#t_VBar           =  r'\|'
+#t_Semicolon      =  r';'
+#t_Bang           =  r'!'
+#t_Less           =  r'<'
+#t_Greater        =  r'>'
+#t_LSQPAREN       =  r'\['
+#t_RSQPAREN       =  r'\]'
+#t_BSlash         =  r'\\'
+#t_Comma          =  r','
+#t_Colon          =  r':'
+t_Func           =  r'−>'
 
 t_RealPlus       =  r'\+\.'
 t_RealMinus      =  r'−\.'
@@ -113,28 +115,28 @@ def t_error(t):
 import ply.lex as lex
 from sys import argv
 lex.lex()
-f = open(argv[1], "r")
-for line in f.readlines():
-    lex.input(line)
-    while 1:
-        tok = lex.token()
-        if not tok: break
-        print tok
+#f = open(argv[1], "r")
+#for line in f.readlines():
+#    lex.input(line)
+#    while 1:
+#        tok = lex.token()
+#        if not tok: break
+#        print tok
 
 
 #Used raw_input for debugging
-#while 1:
-#    try:
-#        sometext = raw_input()
-#        lex.input(sometext)
-#        while 1:
-#            tok = lex.token()
-#            if not tok:
-#                break
-#            print tok
-#    except EOFError:
-#        print "EOF"
-#        break
+while 1:
+    try:
+        sometext = raw_input()
+        lex.input(sometext)
+        while 1:
+            tok = lex.token()
+            if not tok:
+                break
+            print tok
+    except EOFError:
+        print "EOF"
+        break
 
 ### Stuff for Parser later on ###
 
