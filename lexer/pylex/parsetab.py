@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '\x94\x91)\x00\xd0nt\xa5\x1b}\xd1\xdd_ \xe2\r'
+_lr_signature = "Y\xda9!4\x82D'\xbc\xbb05\xcb\xa2\xd7;"
     
-_lr_action_items = {'Identifier':([0,],[1,]),'Let':([0,],[2,]),'$end':([1,2,3,],[-2,-1,0,]),}
+_lr_action_items = {'Const_str':([0,],[1,]),'Identifier':([0,],[2,]),'Let':([0,],[3,]),'Equals':([0,],[4,]),'$end':([1,2,3,4,5,],[-4,-2,-1,-3,0,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'statement':([0,],[3,]),}
+_lr_goto_items = {'statement':([0,],[5,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -28,6 +28,6 @@ _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
   ('statement -> Let','statement',1,'p_statement_let','lexer.py',128),
   ('statement -> Identifier','statement',1,'p_statement_identifier','lexer.py',132),
-  ('expression -> Equals','expression',1,'p_expression_equals','lexer.py',136),
-  ('expression -> Const_str','expression',1,'p_expression_const_str','lexer.py',140),
+  ('statement -> Equals','statement',1,'p_statement_equals','lexer.py',136),
+  ('statement -> Const_str','statement',1,'p_statement_const_str','lexer.py',140),
 ]

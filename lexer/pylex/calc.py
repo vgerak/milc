@@ -97,7 +97,7 @@ yacc.yacc()
 
 while 1:
     try:
-        s = raw_input('calc > ')   # use input() on Python 3
+        s = raw_input('calc > ')
     except EOFError:
         break
     yacc.parse(s)

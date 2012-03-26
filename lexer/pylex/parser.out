@@ -76,8 +76,8 @@ Grammar
 Rule 0     S' -> statement
 Rule 1     statement -> Let
 Rule 2     statement -> Identifier
-Rule 3     expression -> Equals
-Rule 4     expression -> Const_str
+Rule 3     statement -> Equals
+Rule 4     statement -> Const_str
 
 Terminals, with rules where they appear
 
@@ -157,7 +157,6 @@ error                :
 
 Nonterminals, with rules where they appear
 
-expression           : 
 statement            : 0
 
 Parsing method: LALR
@@ -167,27 +166,45 @@ state 0
     (0) S' -> . statement
     (1) statement -> . Let
     (2) statement -> . Identifier
+    (3) statement -> . Equals
+    (4) statement -> . Const_str
 
-    Let             shift and go to state 2
-    Identifier      shift and go to state 1
+    Let             shift and go to state 3
+    Identifier      shift and go to state 2
+    Equals          shift and go to state 4
+    Const_str       shift and go to state 1
 
-    statement                      shift and go to state 3
+    statement                      shift and go to state 5
 
 state 1
+
+    (4) statement -> Const_str .
+
+    $end            reduce using rule 4 (statement -> Const_str .)
+
+
+state 2
 
     (2) statement -> Identifier .
 
     $end            reduce using rule 2 (statement -> Identifier .)
 
 
-state 2
+state 3
 
     (1) statement -> Let .
 
     $end            reduce using rule 1 (statement -> Let .)
 
 
-state 3
+state 4
+
+    (3) statement -> Equals .
+
+    $end            reduce using rule 3 (statement -> Equals .)
+
+
+state 5
 
     (0) S' -> statement .
 
