@@ -4,63 +4,58 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Tue 27 Mar 2012 01:05:29 EEST
+# Last Modified : Tue 27 Mar 2012 01:48:22 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
 
-tokens=( 'And', 'Array', 'Begin', 'Bool', 'Char',
-'Delete', 'Dim', 'Do', 'Done', 'Downto', 'Else', 'End',
-'False', 'Float', 'For', 'If', 'In', 'Int', 'Let', 'Match',
-'Mod', 'Mutable', 'New', 'Not', 'Of', 'Rec', 'Ref',
-'Then', 'To', 'True', 'Type', 'Unit', 'While', 'With',
+reserved = {
+'array'     : 'Array',
+'begin'     : 'Begin',
+'bool'      : 'Bool',
+'char'      : 'Char',
+'delete'    : 'Delete',
+'dim'       : 'Dim',
+'do'        : 'Do',
+'done'      : 'Done',
+'downto'    : 'Downto',
+'else'      : 'Else',
+'end'       : 'End',
+'false'     : 'False',
+'float'     : 'Float',
+'for'       : 'For',
+'if'        : 'If',
+'in'        : 'In',
+'int'       : 'Int',
+'let'       : 'Let',
+'match'     : 'Match',
+'mod'       : 'Mod',
+'mutable'   : 'Mutable',
+'new'       : 'New',
+'not'       : 'Not',
+'of'        : 'Of',
+'rec'       : 'Rec',
+'ref'       : 'Ref',
+'then'      : 'Then',
+'to'        : 'To',
+'true'      : 'True',
+'type'      : 'Type',
+'unit'      : 'Unit',
+'while'     : 'While',
+'with'      : 'With',
+}
 
-'Plus', 'Minus', 'Mul', 'Div', 'Equals', 'LPAREN', 'RPAREN',
+tokens = [ 'Func', 'Plus', 'Minus', 'Mul', 'Div', 'Equals', 'LPAREN', 'RPAREN',
 'VBar', 'Semicolon', 'Bang', 'Less', 'Greater', 'LSQPAREN',
 'RSQPAREN', 'BSlash', 'Comma', 'Colon',
 
-'Func', 'RealPlus',
-'RealMinus', 'RealMul', 'RealDiv', 'Pow', 'AND', 'OR',
+'RealPlus', 'RealMinus', 'RealMul', 'RealDiv', 'Pow', 'AND', 'OR',
 'DomEQ', 'LEQ', 'GEQ', 'EQ', 'NOT', 'ASSIGN',
-'Constructor','Const_str','Const_int','Const_float','Const_char', 'Comment', 'Identifier' )
+'Constructor','Const_str','Const_int','Const_float','Const_char', 'Comment', 'Identifier' ] + list(reserved.values())
 
 # Tokens
 
-t_And            =  r'and'
-t_Array          =  r'array'
-t_Begin          =  r'begin'
-t_Bool           =  r'bool'
-t_Char           =  r'char'
-t_Delete         =  r'delete'
-t_Dim            =  r'dim'
-t_Do             =  r'do'
-t_Done           =  r'done'
-t_Downto         =  r'downto'
-t_Else           =  r'else'
-t_End            =  r'end'
-t_False          =  r'false'
-t_Float          =  r'float'
-t_For            =  r'for'
-t_If             =  r'if'
-t_In             =  r'in'
-t_Int            =  r'int'
-t_Match          =  r'match'
-t_Mod            =  r'mod'
-t_Mutable        =  r'mutable'
-t_New            =  r'new'
-t_Not            =  r'not'
-t_Of             =  r'of'
-t_Rec            =  r'rec'
-t_Ref            =  r'ref'
-t_Then           =  r'then'
-t_To             =  r'to'
-t_True           =  r'true'
-t_Type           =  r'type'
-t_Unit           =  r'unit'
-t_While          =  r'while'
-t_With           =  r'with'
-t_Func           =  r'−>'
-
+t_Func           =  r'\−>'
 t_Plus           =  r'\+'
 t_Minus          =  r'-'
 t_Mul            =  r'\*'
@@ -98,8 +93,13 @@ t_Const_int      =  r'[0-9]'
 t_Const_float    =  r'[+-]?[0-9]+\.[0-9]+([Ee][+-]?[0-9]+)?]'
 t_Const_char     =  r'(\'.\')|(\.\\[nrt0\'\"]\.)|(\'\\x[0-9a-fA-F]{2}\')'
 t_Comment        =  r'(\*[^("(*"|"*)")]*\*)'
-t_Identifier     =  r'[a-z][a-zA-Z0-9_]*'
 t_ignore         =  " \t"
+#t_Identifier     =  r'[a-z][a-zA-Z0-9_]*'
+
+def t_Reserved(t):
+    r'[a-z][a-zA-Z0-9_]*'
+    t.type = reserved.get(t.value,'Identifier')    # Check for reserved words
+    return t
 
 def t_newline(t):
     r'\n+'
