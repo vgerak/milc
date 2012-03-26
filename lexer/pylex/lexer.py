@@ -4,12 +4,10 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Mon 26 Mar 2012 22:44:01 EEST
+# Last Modified : Mon 26 Mar 2012 23:58:33 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
-
-import ply.lex as lex
 
 tokens=( 'And', 'Array', 'Begin', 'Bool', 'Char',
 'Delete', 'Dim', 'Do', 'Done', 'Downto', 'Else', 'End',
@@ -112,11 +110,57 @@ def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-lexer = lex.lex()
+# Build the lexer
+import ply.lex as lex
+lex.lex()
+
+# Precedence rules for the arithmetic operators
+precedence = (
+    ('left','Plus','Minus','RealPlus','RealMinus'),
+    ('left','Mul','Div','RealMul','RealDiv'),
+    ('left','Pow')
+    )
+
+# dictionary of names (for storing variables)
+names = { }
+
+def p_statement_let(p):
+    'statement : Let'
+    print "Let"
+
+def p_statement_identifier(p):
+    'statement : Identifier'
+    print ("Identifier " . p[1])
+
+def p_expression_equals(p):
+    'expression : Equals'
+    print "Equals"
+
+def p_expression_const_str(p):
+    'expression : Const_str'
+    print ("Const_str" . p[1])
+
+#def p_expression_number(p):
+#    'expression : NUMBER'
+#    p[0] = p[1]
+#
+#def p_expression_name(p):
+#    'expression : NAME'
+#    try:
+#        p[0] = names[p[1]]
+#    except LookupError:
+#        print("Undefined name '%s'" % p[1])
+#        p[0] = 0
+
+def p_error(p):
+    print("Syntax error at '%s'" % p.value)
+
+import ply.yacc as yacc
+yacc.yacc()
 
 while 1:
     try:
-        s = raw_input()
+        s = raw_input('test test:')
     except EOFError:
         break
     yacc.parse(s)
