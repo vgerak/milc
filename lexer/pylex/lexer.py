@@ -4,10 +4,11 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Tue 27 Mar 2012 11:57:37 EEST
+# Last Modified : Tue 27 Mar 2012 08:38:38 PM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
+
 
 reserved = {
 'array'     : 'Array',
@@ -95,9 +96,18 @@ t_Const_int      =  r'[0-9]+'
 t_Const_float    =  r'[+-]?[0-9]+\.?[0-9]+([eE][+-]?[0-9]+)?'
 #t_Const_float    =  r'[+-]?[0-9]+\.[0-9]+([Ee][+-]?[0-9]+)?]'
 t_Const_char     =  r'(\'.\')|(\.\\[nrt0\'\"]\.)|(\'\\x[0-9a-fA-F]{2}\')'
-t_Comment        =  r'(\*[^("(*"|"*)")]*\*)'
+#t_Comment        =  r'(\*[^("(*"|"*)")]*\*)'
 t_ignore         =  " \t"
 #t_Identifier     =  r'[a-z][a-zA-Z0-9_]*'
+
+
+def t_comment(t):
+    r'(\(\*(.|\n)*?\*\))|(--.*)'
+    t.type = "Comment"
+    t.lexer.lineno += t.value.count('\n')
+    return t
+
+
 
 def t_Reserved(t):
     r'[a-z][a-zA-Z0-9_]*'
@@ -119,12 +129,12 @@ def main():
     lex.lex()
     if len(argv) > 1:
         f = open(argv[1], "r")
-        for line in f:
-            lex.input(line)
-            while 1:
-                tok = lex.token()
-                if not tok: break
-                print tok
+        #for line in f:
+        lex.input(f.read())
+        while 1:
+            tok = lex.token()
+            if not tok: break
+            print tok
     else:
         print "Interactive mode"
         while 1:
