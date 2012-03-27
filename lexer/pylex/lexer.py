@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Tue 27 Mar 2012 11:22:45 EEST
+# Last Modified : Tue 27 Mar 2012 11:57:37 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -119,7 +119,7 @@ def main():
     lex.lex()
     if len(argv) > 1:
         f = open(argv[1], "r")
-        for line in f.readlines():
+        for line in f:
             lex.input(line)
             while 1:
                 tok = lex.token()
