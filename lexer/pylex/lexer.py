@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Tue 27 Mar 2012 08:38:38 PM EEST
+# Last Modified : Wed 28 Mar 2012 01:58:28 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -54,7 +54,8 @@ tokens = [ 'Func', 'Plus', 'Minus', 'Mul', 'Div', 'Equals', 'LPAREN', 'RPAREN',
 
 'RealPlus', 'RealMinus', 'RealMul', 'RealDiv', 'Pow', 'AND', 'OR',
 'DomEQ', 'LEQ', 'GEQ', 'EQ', 'NOT', 'ASSIGN',
-'Constructor','Const_str','Const_int','Const_float','Const_char', 'Comment', 'Identifier' , 'literals' ] + list(reserved.values())
+'Constructor','Const_str','Const_int','Const_float','Const_char', 'Comment', 'MlComment',
+'Identifier' , 'literals' ] + list(reserved.values())
 
 # Tokens
 
@@ -95,19 +96,50 @@ t_Const_str      =  r'".*"'
 t_Const_int      =  r'[0-9]+'
 t_Const_float    =  r'[+-]?[0-9]+\.?[0-9]+([eE][+-]?[0-9]+)?'
 #t_Const_float    =  r'[+-]?[0-9]+\.[0-9]+([Ee][+-]?[0-9]+)?]'
-t_Const_char     =  r'(\'.\')|(\.\\[nrt0\'\"]\.)|(\'\\x[0-9a-fA-F]{2}\')'
-#t_Comment        =  r'(\*[^("(*"|"*)")]*\*)'
+#t_Const_char     =  r'(\'.\')|(\.\\[nrt0\'\"]\')|(\'\\x[0-9a-fA-F]{2}\')'
+t_Const_char     =  r'\'(.|\\[nrt0]|\\x[0-9a-fA-F]{2})\''
+t_Comment        =  r'--.*'
 t_ignore         =  " \t"
 #t_Identifier     =  r'[a-z][a-zA-Z0-9_]*'
 
 
-def t_comment(t):
-    r'(\(\*(.|\n)*?\*\))|(--.*)'
-    t.type = "Comment"
-    t.lexer.lineno += t.value.count('\n')
-    return t
+# Declare the state
+states = (
+    ('mlcomment','exclusive'),
+)
 
+def t_mlcomment(t):
+    r'\(\*'
+    t.lexer.code_start = t.lexer.lexpos         # Record the starting position
+    t.lexer.level = 1                           # Initial brace level
+    t.lexer.begin('mlcomment')                  # Enter 'mlcomment' state
 
+# Rules for the comment state
+def t_mlcomment_start(t):
+    r'\(\*'
+    t.lexer.level +=1
+
+def t_mlcomment_end(t):
+    r'\*\)'
+    t.lexer.level -=1
+
+    # If closing brace, return the code fragment
+    if t.lexer.level == 0:
+         t.value = t.lexer.lexdata[t.lexer.code_start:t.lexer.lexpos+1]
+         t.type = "MlComment"
+         t.lexer.lineno += t.value.count('\n')
+         t.lexer.begin('INITIAL')
+         return t
+
+def t_mlcomment_anydata(t):
+    r'.+'
+
+# Ignored characters (whitespace)
+t_mlcomment_ignore = " \t\n"
+
+# For bad characters, we just skip over it
+def t_mlcomment_error(t):
+    t.lexer.skip(1)
 
 def t_Reserved(t):
     r'[a-z][a-zA-Z0-9_]*'
