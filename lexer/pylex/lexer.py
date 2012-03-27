@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Wed 28 Mar 2012 01:58:28 EEST
+# Last Modified : Wed 28 Mar 2012 02:04:10 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -92,7 +92,7 @@ t_EQ             =  r'=='
 t_NOT            =  r'!='
 t_ASSIGN         =  r':='
 t_Constructor    =  r'[A-Z][a-zA-Z0-9_]*'
-t_Const_str      =  r'".*"'
+t_Const_str      =  r'".*?"'
 t_Const_int      =  r'[0-9]+'
 t_Const_float    =  r'[+-]?[0-9]+\.?[0-9]+([eE][+-]?[0-9]+)?'
 #t_Const_float    =  r'[+-]?[0-9]+\.[0-9]+([Ee][+-]?[0-9]+)?]'
