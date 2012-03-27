@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Wed 28 Mar 2012 02:45:36 EEST
+# Last Modified : Wed 28 Mar 2012 02:52:19 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -113,8 +113,12 @@ def t_mlcomment_end(t):
 def t_mlcomment_anydata(t):
     r'.+'
 
+def t_mlcomment_newline(t):
+    r'\n+'
+    t.lexer.lineno += t.value.count("\n")
+
 # Ignored characters (whitespace)
-t_mlcomment_ignore = " \t\n"
+t_mlcomment_ignore = " \t"
 
 # For bad characters, we just skip over it
 def t_mlcomment_error(t):
