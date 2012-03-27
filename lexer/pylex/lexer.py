@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Wed 28 Mar 2012 02:04:10 EEST
+# Last Modified : Wed 28 Mar 2012 02:35:50 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -59,23 +59,6 @@ tokens = [ 'Func', 'Plus', 'Minus', 'Mul', 'Div', 'Equals', 'LPAREN', 'RPAREN',
 
 # Tokens
 
-#t_Plus           =  r'\+'
-#t_Minus          =  r'-'
-#t_Mul            =  r'\*'
-#t_Div            =  r'/'
-#t_Equals         =  r'='
-#t_LPAREN         =  r'\('
-#t_RPAREN         =  r'\)'
-#t_VBar           =  r'\|'
-#t_Semicolon      =  r';'
-#t_Bang           =  r'!'
-#t_Less           =  r'<'
-#t_Greater        =  r'>'
-#t_LSQPAREN       =  r'\['
-#t_RSQPAREN       =  r'\]'
-#t_BSlash         =  r'\\'
-#t_Comma          =  r','
-#t_Colon          =  r':'
 t_Func           =  r'->'
 
 t_RealPlus       =  r'\+\.'
@@ -92,16 +75,12 @@ t_EQ             =  r'=='
 t_NOT            =  r'!='
 t_ASSIGN         =  r':='
 t_Constructor    =  r'[A-Z][a-zA-Z0-9_]*'
-t_Const_str      =  r'".*?"'
+t_Const_str      =  r'\"([^\\\n]|(\\.))*?\"'
 t_Const_int      =  r'[0-9]+'
 t_Const_float    =  r'[+-]?[0-9]+\.?[0-9]+([eE][+-]?[0-9]+)?'
-#t_Const_float    =  r'[+-]?[0-9]+\.[0-9]+([Ee][+-]?[0-9]+)?]'
-#t_Const_char     =  r'(\'.\')|(\.\\[nrt0\'\"]\')|(\'\\x[0-9a-fA-F]{2}\')'
-t_Const_char     =  r'\'(.|\\[nrt0]|\\x[0-9a-fA-F]{2})\''
-t_Comment        =  r'--.*'
+t_Const_char     =  r'\'(\\[nrt0\\\"\']|\\x[0-9a-fA-F]{2}|.)\''
+t_ignore_Comment =  r'--.*'
 t_ignore         =  " \t"
-#t_Identifier     =  r'[a-z][a-zA-Z0-9_]*'
-
 
 # Declare the state
 states = (
@@ -123,13 +102,14 @@ def t_mlcomment_end(t):
     r'\*\)'
     t.lexer.level -=1
 
-    # If closing brace, return the code fragment
+    # If closing brace, return the comment fragment
     if t.lexer.level == 0:
          t.value = t.lexer.lexdata[t.lexer.code_start:t.lexer.lexpos+1]
          t.type = "MlComment"
          t.lexer.lineno += t.value.count('\n')
          t.lexer.begin('INITIAL')
-         return t
+         pass
+         #return t
 
 def t_mlcomment_anydata(t):
     r'.+'
