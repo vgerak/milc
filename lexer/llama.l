@@ -141,7 +141,7 @@ CC "(*""*)"
 \'\\[nrt0\\\'\"]\'              { return t_Const_char; }
 \'\\x{H}{H}\'                   { return t_Const_char; }
 
-\".*\"                          { return t_Const_str; }
+\"([^\"\n]|\\\")*?\"              { return t_Const_str; }
 
 [+-]?{D}*                       { return t_Const_int; }
 [+-]?{D}+\.{D}+([Ee][+-]?{D}+)? { return t_Const_float; }
