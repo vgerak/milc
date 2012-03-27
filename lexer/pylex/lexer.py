@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Tue 27 Mar 2012 02:10:33 EEST
+# Last Modified : Tue 27 Mar 2012 10:18:51 AM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -114,14 +114,22 @@ def t_error(t):
 # Build the lexer
 import ply.lex as lex
 from sys import argv
-lex.lex()
-f = open(argv[1], "r")
-for line in f.readlines():
-    lex.input(line)
-    while 1:
-        tok = lex.token()
-        if not tok: break
-        print tok
+def main():
+    if len(argv) == 1:
+        print "Usage %s file.lla" % argv[0]
+        exit(-1)
+
+    lex.lex()
+    f = open(argv[1], "r")
+    for line in f:
+        lex.input(line)
+        while 1:
+            tok = lex.token()
+            if not tok: break
+            print tok
+
+if __name__ == "__main__":
+    main()
 
 ##Used raw_input for debugging
 #while 1:
