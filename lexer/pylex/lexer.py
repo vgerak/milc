@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Wed 28 Mar 2012 02:35:50 EEST
+# Last Modified : Wed 28 Mar 2012 02:45:36 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -60,7 +60,6 @@ tokens = [ 'Func', 'Plus', 'Minus', 'Mul', 'Div', 'Equals', 'LPAREN', 'RPAREN',
 # Tokens
 
 t_Func           =  r'->'
-
 t_RealPlus       =  r'\+\.'
 t_RealMinus      =  r'−\.'
 t_RealMul        =  r'\*\.'
@@ -141,12 +140,12 @@ def main():
     lex.lex()
     if len(argv) > 1:
         f = open(argv[1], "r")
-        #for line in f:
-        lex.input(f.read())
-        while 1:
-            tok = lex.token()
-            if not tok: break
-            print tok
+        for line in f:
+            lex.input(line)
+            while 1:
+                tok = lex.token()
+                if not tok: break
+                print tok
     else:
         print "Interactive mode"
         while 1:
