@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Tue 27 Mar 2012 11:12:58 EEST
+# Last Modified : Tue 27 Mar 2012 11:22:45 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -91,8 +91,9 @@ t_NOT            =  r'!='
 t_ASSIGN         =  r':='
 t_Constructor    =  r'[A-Z][a-zA-Z0-9_]*'
 t_Const_str      =  r'".*"'
-t_Const_int      =  r'[0-9]'
-t_Const_float    =  r'[+-]?[0-9]+\.[0-9]+([Ee][+-]?[0-9]+)?]'
+t_Const_int      =  r'[0-9]+'
+t_Const_float    =  r'[+-]?[0-9]+\.?[0-9]+([eE][+-]?[0-9]+)?'
+#t_Const_float    =  r'[+-]?[0-9]+\.[0-9]+([Ee][+-]?[0-9]+)?]'
 t_Const_char     =  r'(\'.\')|(\.\\[nrt0\'\"]\.)|(\'\\x[0-9a-fA-F]{2}\')'
 t_Comment        =  r'(\*[^("(*"|"*)")]*\*)'
 t_ignore         =  " \t"
@@ -114,29 +115,33 @@ def t_error(t):
 # Build the lexer
 import ply.lex as lex
 from sys import argv
-lex.lex()
-if len(argv) > 1:
-    f = open(argv[1], "r")
-    for line in f.readlines():
-        lex.input(line)
-        while 1:
-            tok = lex.token()
-            if not tok: break
-            print tok
-else:
-    print "Interactive mode"
-    while 1:
-        try:
-            sometext = raw_input()
-            lex.input(sometext)
+def main():
+    lex.lex()
+    if len(argv) > 1:
+        f = open(argv[1], "r")
+        for line in f.readlines():
+            lex.input(line)
             while 1:
                 tok = lex.token()
-                if not tok:
-                    break
+                if not tok: break
                 print tok
-        except EOFError:
-            print "EOF"
-            break
+    else:
+        print "Interactive mode"
+        while 1:
+            try:
+                sometext = raw_input()
+                lex.input(sometext)
+                while 1:
+                    tok = lex.token()
+                    if not tok:
+                        break
+                    print tok
+            except EOFError:
+                print "EOF"
+                break
+
+if __name__ == "__main__":
+    main()
 
 ### Stuff for Parser later on ###
 
