@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Wed 28 Mar 2012 23:44:05 EEST
+# Last Modified : Wed 28 Mar 2012 23:46:53 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -180,33 +180,6 @@ if __name__ == "__main__":
 ## dictionary of names (for storing variables)
 #names = { }
 #
-#def p_statement_let(p):
-#    'statement : Let'
-#    print ("Let")
-#
-#def p_statement_identifier(p):
-#    'statement : Identifier'
-#    print ("Identifier ")
-#
-#def p_statement_equals(p):
-#    'statement : Equals'
-#    print ("Equals")
-#
-#def p_statement_const_str(p):
-#    'statement : Const_str'
-#    print ("Const_str %s" % p[1])
-#
-#def p_expression_number(p):
-#    'expression : NUMBER'
-#    p[0] = p[1]
-#
-#def p_expression_name(p):
-#    'expression : NAME'
-#    try:
-#        p[0] = names[p[1]]
-#    except LookupError:
-#        print("Undefined name '%s'" % p[1])
-#        p[0] = 0
 #
 #def p_error(p):
 #    print("Syntax error at '%s'" % p.value)
