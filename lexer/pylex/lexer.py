@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Wed 28 Mar 2012 13:03:55 EEST
+# Last Modified : Wed 28 Mar 2012 23:44:05 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -46,7 +46,7 @@ reserved = {
 'with'      : 'With'
 }
 
-literals = [ '+', '-', '*', '/', '=', '(', ')', '|', ';', '!', '<', '>', '[', ']', '\\', ',', ':' ]
+literals = [ '+', '-', '*', '/', '=', '(', ')', '|', ';', '!', '<', '>', '[', ']', ',', ':' ]
 
 tokens = [ 'Func', 'Plus', 'Minus', 'Mul', 'Div', 'Equals', 'LPAREN', 'RPAREN',
 'VBar', 'Semicolon', 'Bang', 'Less', 'Greater', 'LSQPAREN',
@@ -134,7 +134,7 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
 
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
+    print("Illegal character '%s' on: line %s, column %s" % (t.value[0], t.lexer.lineno, t.lexpos))
     t.lexer.skip(1)
 
 # Build the lexer
