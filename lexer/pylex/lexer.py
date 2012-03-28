@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Thu 29 Mar 2012 00:11:15 EEST
+# Last Modified : Thu 29 Mar 2012 12:40:17 AM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -134,15 +134,16 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
 
 def t_error(t):
-    global errors
-    print("Illegal character '%s' on: line %s, column %s" % (t.value[0], t.lexer.lineno, t.lexpos))
-    errors.append((t.lexer.lineno, t.lexpos))
+    if len(argv) > 1:
+        fname = argv[1]
+    else:
+        fname = "stdin"
+    print("%s:%s:%s #> Illegal character '%s'" % (fname, t.lexer.lineno, t.lexpos, t.value[0]))
     t.lexer.skip(1)
 
 # Build the lexer
 import ply.lex as lex
 from sys import argv
-errors = []
 def main():
     lex.lex()
     if len(argv) > 1:
@@ -151,8 +152,10 @@ def main():
             lex.input(line)
             while 1:
                 tok = lex.token()
-                if not tok: break
-                print tok
+                if not tok: 
+                    break
+                #uncomment to print tokens
+                #print tok
     else:
         print "Interactive mode"
         while 1:
@@ -163,16 +166,11 @@ def main():
                     tok = lex.token()
                     if not tok:
                         break
-                    print tok
+                    #uncomment to print tokens
+                    #print tok
             except EOFError:
                 print "EOF"
                 break
-    if errors:
-        print "There are errors in the source, please check the following:"
-        for err in errors:
-            print ("Line %s, Column %s" % (err[0], err[1]))
-    else:
-        print "Lexing was successful"
 
 if __name__ == "__main__":
     main()
