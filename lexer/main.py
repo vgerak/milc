@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : main.py
 # Creation Date : 21-03-2012
-# Last Modified : Sat 24 Mar 2012 08:47:26 PM EET
+# Last Modified : Wed 28 Mar 2012 11:50:06 PM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -16,12 +16,11 @@ def main():
     if len(sys.argv) > 1:
         yyopenIO(sys.argv[1])
     i = yylex()
-    while i:
+    while i>0:
         try:
             print "line: %d\t\t\t%s\t\t\t%s"%(yyline(),types[i],yytext())
         except KeyError:
             print "line: %d\t\t\t%s\t\t\t%s"%(yyline(),i,yytext())
-
         i = yylex()
     if len(sys.argv) > 1:
         yycloseIO()

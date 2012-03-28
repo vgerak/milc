@@ -4208,7 +4208,7 @@ case YY_STATE_EOF(INITIAL):
 case 66:
 YY_RULE_SETUP
 #line 150 "llama.l"
-{ printf("Error on line %d",lines); return -1; }
+{ printf("Error on line %d\n",yyget_lineno()); return -1; }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP

@@ -147,7 +147,7 @@ CC "(*""*)"
 [+-]?{D}+\.{D}+([Ee][+-]?{D}+)? { return t_Const_float; }
 
 <<EOF>>                         { return 0; }
-.                               { printf("Error on line %d",lines); return -1; }
+.                               { printf("Error on line %d\n",yyget_lineno()); return -1; }
 
 %%
 
