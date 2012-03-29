@@ -4,9 +4,10 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : tokrules.py
 # Creation Date : 29-03-2012
-# Last Modified : Thu 29 Mar 2012 11:26:05 AM EEST
+# Last Modified : Thu 29 Mar 2012 11:57:46 EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
+from sys import argv
 
 reserved = {
 'array'     : 'Array',
