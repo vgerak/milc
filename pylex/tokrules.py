@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : tokrules.py
 # Creation Date : 29-03-2012
-# Last Modified : Thu 29 Mar 2012 10:40:18 PM EEST
+# Last Modified : Thu 29 Mar 2012 11:25:06 PM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
 from sys import argv
@@ -118,7 +118,18 @@ def t_mlcomment_end(t):
          #return t
 
 def t_mlcomment_anydata(t):
-    r'.+'
+    r'([^*()]+|\*|\(|\))'
+    t.lexer.lineno += t.value.count("\n")
+    pass
+
+def t_mlcomment_lparen(t):
+    r'\('
+    pass
+
+def t_mlcomment_rparen(t):
+    r'\)'
+    pass 
+
 
 def t_mlcomment_newline(t):
     r'\n+'
