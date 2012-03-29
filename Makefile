@@ -7,5 +7,6 @@ files=$(shell find $(srcfolders) -type f -not -name "*.pyc" -not -name "*.pyo" -
 .PHONY: dist
 
 dist:	
-	zip $(distfolder)/$(projectname).zip $(files)
+	zip --quiet $(distfolder)/$(projectname)-$(version).zip $(files)
+	tar -czf $(distfolder)/$(projectname)-$(version).tar.gz $(files)
 
