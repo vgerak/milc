@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Thu 29 Mar 2012 11:08:25 AM EEST
+# Last Modified : Thu 29 Mar 2012 11:18:33 AM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -145,17 +145,15 @@ def t_error(t):
 import ply.lex as lex
 from sys import argv
 
-import readline
-import rlcompleter
-readline.parse_and_bind("tab: complete")
+lexer = lex.lex(optimize = 1)
 def main():
-    lex.lex()
+    global lexer
     if len(argv) > 1:
         f = open(argv[1], "r")
         for line in f:
-            lex.input(line)
+            lexer.input(line)
             while 1:
-                tok = lex.token()
+                tok = lexer.token()
                 if not tok: 
                     break
                 #uncomment to print tokens
@@ -165,9 +163,9 @@ def main():
         while 1:
             try:
                 sometext = raw_input("> ")
-                lex.input(sometext)
+                lexer.input(sometext)
                 while 1:
-                    tok = lex.token()
+                    tok = lexer.token()
                     if not tok:
                         break
                     #uncomment to print tokens
