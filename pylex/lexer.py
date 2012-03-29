@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : lexer.py
 # Creation Date : 21-03-2012
-# Last Modified : Thu 29 Mar 2012 11:18:33 AM EEST
+# Last Modified : Thu 29 Mar 2012 11:21:04 AM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -144,6 +144,7 @@ def t_error(t):
 # Build the lexer
 import ply.lex as lex
 from sys import argv
+import readline
 
 lexer = lex.lex(optimize = 1)
 def main():
