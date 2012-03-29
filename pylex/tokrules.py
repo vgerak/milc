@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : tokrules.py
 # Creation Date : 29-03-2012
-# Last Modified : Thu 29 Mar 2012 11:57:46 EEST
+# Last Modified : Thu 29 Mar 2012 10:40:18 PM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
 from sys import argv
@@ -87,9 +87,17 @@ states = (
 
 def t_mlcomment(t):
     r'\(\*'
-    t.lexer.code_start = t.lexer.lexpos         # Record the starting position
-    t.lexer.level = 1                           # Initial brace level
-    t.lexer.begin('mlcomment')                  # Enter 'mlcomment' state
+    try:
+        if t.lexer.level == 0:                           
+            t.lexer.code_start = t.lexer.lexpos         # Record the starting position
+            t.lexer.level = 1                           # Initial brace level
+            t.lexer.begin('mlcomment')                  # Enter 'mlcomment' state
+        else:
+            t.lexer.level += 1
+    except AttributeError:
+        t.lexer.code_start = t.lexer.lexpos         # Record the starting position
+        t.lexer.level = 1                           # Initial brace level
+        t.lexer.begin('mlcomment')                  # Enter 'mlcomment' state
 
 # Rules for the comment state
 def t_mlcomment_start(t):
