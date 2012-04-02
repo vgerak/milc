@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : parserules.py
 # Creation Date : 02-04-2012
-# Last Modified : Mon 02 Apr 2012 11:47:33 PM EEST
+# Last Modified : Mon 02 Apr 2012 11:54:07 PM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 # Created By : Vasilis Gerakaris <vgerak@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
@@ -46,7 +46,7 @@ def p_def(p):
 
 def p_reppar(p):
     '''reppar   :   empty
-                |   par   
+                |   par reppar
                 ;'''
     pass
 def p_repexpr(p):
